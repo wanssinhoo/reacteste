@@ -20,11 +20,11 @@ export default function App() {
         ? {
           facingMode: 'environment',
           aspectRatio,
-          //zoom: 2,
-          //focusMode: 'continuous',
+          zoom: 2,
+          focusMode: 'continuous',
         }
         : {
-          //zoom: 4,
+          zoom: 4,
         },
     });
 
