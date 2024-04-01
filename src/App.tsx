@@ -31,7 +31,7 @@ export default function App() {
             fps: 10,
             videoConstraints: {
               facingMode: 'environment',
-              zoom: userAgent.match(/Android/i) ? 2 : 4,
+              zoom: 2,
               aspectRatio,
             },
           },
