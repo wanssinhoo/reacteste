@@ -20,7 +20,7 @@ export default function App() {
         ? {
           facingMode: 'environment',
           aspectRatio,
-          zoom: 2,
+          zoom: 5,
           focusMode: 'continuous',
         }
         : {
