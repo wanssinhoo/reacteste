@@ -16,16 +16,10 @@ export default function App() {
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
     const videoStream = await window.navigator.mediaDevices.getUserMedia({
-      video: userAgent.match(/Android/i)
-        ? {
-          facingMode: 'environment',
-          aspectRatio,
-          // zoom: 5,
-          focusMode: 'continuous',
-        }
-        : {
-          zoom: 4,
-        },
+      video: {
+        facingMode: { ideal: 'environment' },
+      },
+      audio: false,
     });
 
     try {
