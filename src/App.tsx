@@ -91,7 +91,7 @@ export default function App() {
         button={
           <ButtonSecondary
             onPress={() => {
-              window.alert(navigator.userAgent);
+              window.alert(navigator.userAgent.match(/Android/i) ? true : false);
             }}
             style={{
               background:
