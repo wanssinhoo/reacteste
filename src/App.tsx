@@ -16,12 +16,16 @@ export default function App() {
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
     const videoStream = await window.navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode: 'environment',
-        aspectRatio,
-        //zoom: 2,
-        //focusMode: 'continuous',
-      },
+      video: userAgent.match(/Android/i)
+        ? {
+          facingMode: 'environment',
+          aspectRatio,
+          //zoom: 2,
+          //focusMode: 'continuous',
+        }
+        : {
+          zoom: 4,
+        },
       audio: false
     });
 
@@ -33,7 +37,7 @@ export default function App() {
             fps: 10,
             videoConstraints: {
               facingMode: 'environment',
-              //zoom: 4,
+              zoom: 4,
               aspectRatio,
             },
           },
