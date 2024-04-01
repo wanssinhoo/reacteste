@@ -110,7 +110,7 @@ export default function App() {
                 medium
                 color={skinVars.colors.textPrimaryInverse}
               >
-                {'Posicione o código de barras na linha'}
+                {navigator.userAgent}
               </Text4>
               <Text4
                 textAlign="center"
