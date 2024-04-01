@@ -91,7 +91,7 @@ export default function App() {
         button={
           <ButtonSecondary
             onPress={() => {
-
+              window.alert(navigator.userAgent);
             }}
             style={{
               background:
@@ -110,7 +110,7 @@ export default function App() {
                 medium
                 color={skinVars.colors.textPrimaryInverse}
               >
-                {navigator.userAgent}
+                {'Posicione o código de barras na linha'}
               </Text4>
               <Text4
                 textAlign="center"
