@@ -21,7 +21,8 @@ export default function App() {
         aspectRatio,
         //zoom: 2,
         //focusMode: 'continuous',
-      }
+      },
+      audio: false
     });
 
     try {
