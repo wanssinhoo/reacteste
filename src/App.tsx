@@ -18,14 +18,22 @@ export default function App() {
 
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
-    videoStream = await window.navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode: { ideal: 'environment' },
-        focusMode: { ideal: 'continuous' },
-      },
-      audio: false,
+    // videoStream = await window.navigator.mediaDevices.getUserMedia({
+    //   video: {
+    //     facingMode: { ideal: 'environment' },
+    //     focusMode: { ideal: 'continuous' },
+    //   },
+    //   audio: false,
+    // });
+
+    
+    let devi = await window.navigator.mediaDevices.enumerateDevices();
+    let videoDevices: Array<MediaDeviceInfo> = [];
+    await devi.forEach((device: MediaDeviceInfo) => {
+      if (device.kind == 'videoinput') {
+        videoDevices.push(device);
+      }
     });
-      devId = await window.navigator.mediaDevices.enumerateDevices();
 
 
     // if (videoStream.getVideoTracks().length == 1) {
@@ -70,7 +78,7 @@ export default function App() {
     try {
       html5QrCode
         .start(
-          devId[1].deviceId,
+          videoDevices[0].deviceId,
           {
             fps: 10,
             videoConstraints: {
