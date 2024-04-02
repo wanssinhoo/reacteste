@@ -31,7 +31,7 @@ export default function App() {
     let devi = await window.navigator.mediaDevices.enumerateDevices();
     let videoDevices: Array<MediaDeviceInfo> = [];
     await devi.forEach((device: MediaDeviceInfo) => {
-      if (device.kind == 'videoinput' && device.label.match(/back/gi) ) {
+      if (device.kind == 'videoinput' && device.label.match(/Back/gi) ) {
         videoDevices.push(device);
       }
     });
