@@ -70,7 +70,14 @@ export default function App() {
       html5QrCode
         .start(
           devId[3],
-          undefined,
+          {
+            fps: 10,
+            videoConstraints: {
+                facingMode: 'environment',
+                zoom: userAgent.match(/IPHONE/i) ? 4 : 2,
+                aspectRatio,
+            },
+        },
           onNewScanResult,
           () => {
             return;
