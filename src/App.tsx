@@ -25,12 +25,13 @@ export default function App() {
       videoStream = await window.navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: 'environment',
-          aspectRatio
+          aspectRatio,
+          zoom : 4
         },
         audio: false,
       });
 
-      window.alert(JSON.stringify(videoStream.getVideoTracks().length));
+      // window.alert(JSON.stringify(videoStream.getVideoTracks().length));
       deviceId = videoStream.getVideoTracks()[0].id;
     }
 
@@ -69,7 +70,7 @@ export default function App() {
             fps: 10,
             videoConstraints: {
               facingMode: 'environment',
-              zoom: 2,
+              // zoom: 2,
               aspectRatio,
             },
           },
