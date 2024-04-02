@@ -21,7 +21,7 @@ export default function App() {
       audio: false,
     });
 
-    prints = videoStream.getVideoTracks().length;
+    prints = await window.navigator.mediaDevices.enumerateDevices();
 
     try {
       html5QrCode
