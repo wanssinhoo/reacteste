@@ -7,7 +7,7 @@ export default function App() {
   const width = global.window.innerWidth;
   const height = global.window.innerHeight;
 
-  const aspectRatio = width / height;
+  const aspectRatio = 1;
 
   const onNewScanResult = (decodedText: string) => {
     window.alert(decodedText);
@@ -32,7 +32,7 @@ export default function App() {
             fps: 10,
             videoConstraints: {
               facingMode: 'environment',
-              zoom: userAgent.match(/IPHONE/i) ? 4 : 2,
+              zoom: userAgent.match(/IPHONE/i) ? 4 : 1.5,
               aspectRatio,
             },
           },
