@@ -70,7 +70,7 @@ export default function App() {
     try {
       html5QrCode
         .start(
-          devId[3],
+          devId[3].deviceId,
           {
             fps: 10,
             videoConstraints: {
@@ -150,13 +150,13 @@ export default function App() {
               >
                 {`${dev}`}
               </Text4>
-              {/* <Text4
+              { <Text4
                 textAlign="center"
                 medium
                 color={skinVars.colors.textPrimaryInverse}
               >
                 {'e aguarde a leitura automática'}
-              </Text4> */}
+              </Text4> }
             </Box>
           </Box>
           <Box className={styles.scanning_area}>
