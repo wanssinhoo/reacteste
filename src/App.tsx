@@ -178,11 +178,11 @@ export default function App() {
       }
     });
 
-    dev += videoStream.getVideoTracks().length + " ";
+    dev += videoStream.getVideoTracks()[0].getCapabilities();
 
     for (let i in videoDevices) {
       const device = videoDevices[i];
-      dev += "Opening video device " + device.deviceId + " (" + device.label + ")" ;
+      // dev += "Opening video device " + device.deviceId + " (" + device.label + ")" ;
       // const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
       // stream.getVideoTracks().forEach(track => {
       //   const capabilities = track.getCapabilities();
