@@ -56,11 +56,13 @@ export default function App() {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
       stream.getVideoTracks().forEach(track => {
         const capabilities = track.getCapabilities();
-        devId += JSON.stringify( capabilities.focusMode.indexOf("continuous") != -1);
-        console.log(capabilities);
-        const settings = track.getSettings();
-        // console.log(settings);
-        console.log('');
+        if(capabilities.focusMode.indexOf("continuous") != -1)
+        deviceId = capabilities.deviceId;
+        // devId += JSON.stringify( capabilities.focusMode.indexOf("continuous") != -1);
+        // console.log(capabilities);
+        // const settings = track.getSettings();
+        // // console.log(settings);
+        // console.log('');
       }
       )
 
@@ -72,7 +74,7 @@ export default function App() {
     try {
       html5QrCode
         .start(
-          videoDevices[videoDevices.length -1].deviceId,
+          deviceId,
           {
             fps: 10,
             aspectRatio
