@@ -9,7 +9,7 @@ export default function App() {
   let dev: any;
   let devId: any;
   let deviceId: any;
-  let videoStream: MediaStream;
+  let videoStream: any;
 
   const aspectRatio = width / height;
 
@@ -19,57 +19,45 @@ export default function App() {
 
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
-    videoStream = await window.navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode: { ideal: 'environment' },
-      },
-      audio: false,
-    });
 
-    window.alert(JSON.stringify(videoStream.getVideoTracks()[0].getCapabilities()));
-    
-    let devi = await window.navigator.mediaDevices.enumerateDevices();
-    let videoDevices: Array<MediaDeviceInfo> = [];
-    // window.alert(JSON.stringify(devi));
-    await devi.forEach((device: MediaDeviceInfo) => {
-      if (device.label.match(/back/gi) ) {
-        videoDevices.push(device);
-      }
-    });
-    devId = videoDevices.length;
+    if(userAgent.match(/iphone/gi)){
 
-    // if (videoStream.getVideoTracks().length == 1) {
-    //   devId = videoStream.getVideoTracks()[0].getCapabilities().deviceId;
-    // } else {
-    //   videoStream.getVideoTracks().forEach(track => {
-    //     const capabilities = track.getCapabilities();
-    //     console.log(capabilities);
-    //     const settings = track.getSettings();
-    //     // console.log(settings);
-    //     console.log('');
-    //   });
-    // }
+      videoStream = await window.navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: { ideal: 'environment' },
+        },
+        audio: false,
+      });
 
-  
-    for (let i in videoDevices) {
-      const device = videoDevices[i];
-      // console.log( "Opening video device " + device.deviceId + " (" + device.label + ")" );
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
-      stream.getVideoTracks().forEach(track => {
-        const capabilities = track.getCapabilities();
-        if(capabilities.focusMode.indexOf("continuous") != -1)
-        deviceId = capabilities.deviceId;
-        // devId += JSON.stringify( capabilities.focusMode.indexOf("continuous") != -1);
-        // console.log(capabilities);
-        // const settings = track.getSettings();
-        // // console.log(settings);
-        // console.log('');
-      }
-      )
-
-      stream.getTracks().forEach(track => track.stop());
+      deviceId = videoStream.getVideoTracks()[0].deviceId;
     }
 
+    // window.alert(JSON.stringify(videoStream.getVideoTracks()[0].getCapabilities()));
+    else {
+      let devi = await window.navigator.mediaDevices.enumerateDevices();
+      let videoDevices: Array<MediaDeviceInfo> = [];
+      // window.alert(JSON.stringify(devi));
+      await devi.forEach((device: MediaDeviceInfo) => {
+        if (device.label.match(/back/gi) ) {
+          videoDevices.push(device);
+        }
+      });
+
+      devId = videoDevices.length;
+    
+      for (let i in videoDevices) {
+        const device = videoDevices[i];
+        // console.log( "Opening video device " + device.deviceId + " (" + device.label + ")" );
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
+        stream.getVideoTracks().forEach(track => {
+          const capabilities = track.getCapabilities();
+          if(capabilities.focusMode.indexOf("continuous") != -1)
+          deviceId = capabilities.deviceId;
+        }
+        );
+        stream.getTracks().forEach(track => track.stop());
+      }
+    }
 
 
     try {
