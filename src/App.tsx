@@ -19,6 +19,7 @@ export default function App() {
       video: {
         facingMode: 'environment',
         aspectRatio,
+        focusMode: 'continuous',
       },
       audio: false
     });
@@ -31,7 +32,7 @@ export default function App() {
             fps: 10,
             videoConstraints: {
               facingMode: 'environment',
-              zoom: 2,
+              zoom: userAgent.match(/IPHONE/i) ? 4 : 2,
               aspectRatio,
             },
           },
@@ -91,7 +92,7 @@ export default function App() {
         button={
           <ButtonSecondary
             onPress={() => {
-              window.alert(navigator.userAgent.match(/Android/i) ? true : false);
+              window.alert(aspectRatio);
             }}
             style={{
               background:
