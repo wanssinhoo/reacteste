@@ -171,6 +171,7 @@ export default function App() {
     let devi = await window.navigator.mediaDevices.enumerateDevices();
     // dev = devi.length + " ";
     let videoDevices: Array<MediaDeviceInfo> = [];
+    let videoDevicesOk: any;
     await devi.forEach((device: MediaDeviceInfo) => {
       if (device.kind == 'videoinput' && device.label.match(/back/i)) {
         videoDevices.push(device);
@@ -178,14 +179,15 @@ export default function App() {
     });
 
     dev += JSON.stringify(devi);
-
+    
     for (let i in videoDevices) {
       const device = videoDevices[i];
       // dev += "Opening video device " + device.deviceId + " (" + device.label + ")" ;
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId:  device.deviceId } });
       stream.getVideoTracks()[i].getCapabilities();
       if(stream.getVideoTracks()[i].getCapabilities().facingMode?.indexOf("continuous") != -1){
         devId = device.deviceId;
+        videoDevicesOk = stream.getVideoTracks()[i].id;
       }
 
 
@@ -207,7 +209,7 @@ export default function App() {
     try {
       html5QrCode
         .start(
-          devId,
+          videoDevicesOk,
           {
             fps: 10,
             videoConstraints: {
