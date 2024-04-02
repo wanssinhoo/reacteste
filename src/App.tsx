@@ -164,7 +164,7 @@ export default function App() {
     const videoStream = await window.navigator.mediaDevices.getUserMedia({
       video: {
         facingMode: 'environment',
-        aspectRatio,
+        // aspectRatio,
       },
       audio: false
     });
