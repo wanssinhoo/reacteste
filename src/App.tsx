@@ -21,6 +21,7 @@ export default function App() {
     videoStream = await window.navigator.mediaDevices.getUserMedia({
       video: {
         facingMode: { ideal: 'environment' },
+        focusMode: { ideal: 'continuous' },
       },
       audio: false,
     });
@@ -72,11 +73,11 @@ export default function App() {
           devId[3],
           {
             fps: 10,
-            // videoConstraints: {
-            //     facingMode: 'environment',
-            //     zoom: userAgent.match(/IPHONE/i) ? 4 : 2,
-            //     aspectRatio,
-            // },
+            videoConstraints: {
+                facingMode: 'environment',
+                zoom: userAgent.match(/IPHONE/i) ? 4 : 2,
+                aspectRatio,
+            },
         },
           onNewScanResult,
           () => {
