@@ -25,10 +25,13 @@ export default function App() {
     if(userAgent.match(/iphone/gi)){
 
       conf = {
-        facingMode: 'environment',
-        // aspectRatio,
-        zoom: 4,
-      };
+          fps: 10,
+          videoConstraints: {
+            facingMode: 'environment',
+            aspectRatio,
+            zoom: 4,
+          },
+        };
 
       videoStream = await window.navigator.mediaDevices.getUserMedia({
         video: {
@@ -44,11 +47,15 @@ export default function App() {
 
     else {
       conf = {
-        facingMode: 'environment',
-        autoGainControl: true,
-        
-        zoom: 2,
+        fps: 10,
+        aspectRatio,
+        videoConstraints: {
+          facingMode: 'environment',
+          autoGainControl: true,
+          zoom: 2,
+        },
       };
+    
 
       let devi = await window.navigator.mediaDevices.enumerateDevices();
       let videoDevices: Array<MediaDeviceInfo> = [];
@@ -78,11 +85,7 @@ export default function App() {
       html5QrCode
         .start(
           deviceId,
-          {
-            fps: 10,
-            aspectRatio,
-            videoConstraints: conf,
-          },
+          conf,
           onNewScanResult,
           () => {
             return;
