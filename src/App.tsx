@@ -46,7 +46,7 @@ export default function App() {
       conf = {
         facingMode: 'environment',
         autoGainControl: true,
-        aspectRatio,
+        
         zoom: 2,
       };
 
@@ -80,6 +80,7 @@ export default function App() {
           deviceId,
           {
             fps: 10,
+            aspectRatio,
             videoConstraints: conf,
           },
           onNewScanResult,
