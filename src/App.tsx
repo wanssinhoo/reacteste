@@ -26,7 +26,6 @@ export default function App() {
         video: {
           facingMode: 'environment',
           aspectRatio,
-          zoom : 4
         },
         audio: false,
       });
@@ -70,7 +69,7 @@ export default function App() {
             fps: 10,
             videoConstraints: {
               facingMode: 'environment',
-              zoom: 2,
+              zoom: userAgent.match(/iphone/gi) ? 4 : 2,
               aspectRatio,
             },
           },
