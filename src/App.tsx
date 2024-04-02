@@ -164,10 +164,11 @@ export default function App() {
     const videoStream = await navigator.mediaDevices.getUserMedia({
       video: {
         facingMode: 'environment',
-        focusMode: {exact: "continuous"}
       },
       audio: false
     });
+
+    const videoStream2 = await navigator.mediaDevices.getSupportedConstraints() ;
 
     let devi = await window.navigator.mediaDevices.enumerateDevices();
     // dev = devi.length + " ";
@@ -178,8 +179,8 @@ export default function App() {
         videoDevices.push(device);
       }
     });
-
-    dev += JSON.stringify(videoStream.getVideoTracks()[0].getCapabilities());
+    
+    dev += JSON.stringify(videoStream2);
     
     // for (let i in videoDevices) {
     //   const device = videoDevices[i];
