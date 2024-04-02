@@ -29,10 +29,10 @@ export default function App() {
         audio: false,
       });
 
+      window.alert(JSON.stringify(videoStream.getVideoTracks().length));
       deviceId = videoStream.getVideoTracks()[0].deviceId;
     }
 
-    // window.alert(JSON.stringify(videoStream.getVideoTracks()[0].getCapabilities()));
     else {
       let devi = await window.navigator.mediaDevices.enumerateDevices();
       let videoDevices: Array<MediaDeviceInfo> = [];
