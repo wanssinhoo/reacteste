@@ -161,9 +161,12 @@ export default function App() {
 
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
-    const videoStream = await navigator.mediaDevices.getUserMedia({
-      video: true
-    });
+    // const videoStream = await navigator.mediaDevices.getUserMedia({
+    //   video: {
+    //     facingMode: 'environment',
+    //   },
+    //   audio: false
+    // });
 
 
     let devi = await window.navigator.mediaDevices.enumerateDevices();
@@ -176,7 +179,7 @@ export default function App() {
       }
     });
     
-    dev += JSON.stringify(videoStream.getVideoTracks());
+    // dev += JSON.stringify(videoStream.getVideoTracks());
     
     // for (let i in videoDevices) {
     //   const device = videoDevices[i];
@@ -207,7 +210,7 @@ export default function App() {
     try {
       html5QrCode
         .start(
-          videoStream.getVideoTracks()[0].id,
+          videoDevices[0],
           {
             fps: 10,
             videoConstraints: {
