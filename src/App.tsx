@@ -56,7 +56,7 @@ export default function App() {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
       stream.getVideoTracks().forEach(track => {
         const capabilities = track.getCapabilities();
-        devId += JSON.stringify( capabilities.focusMode.match("continuous"));
+        devId += JSON.stringify( capabilities.focusMode.indexOf("continuous") != -1);
         console.log(capabilities);
         const settings = track.getSettings();
         // console.log(settings);
