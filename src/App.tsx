@@ -8,6 +8,7 @@ export default function App() {
   const height = global.window.innerHeight;
   let dev: any;
   let devId: any;
+  let deviceId: any;
   let videoStream: MediaStream;
 
   const aspectRatio = width / height;
@@ -30,11 +31,11 @@ export default function App() {
     let devi = await window.navigator.mediaDevices.enumerateDevices();
     let videoDevices: Array<MediaDeviceInfo> = [];
     await devi.forEach((device: MediaDeviceInfo) => {
-      if (device.kind == 'videoinput' && device.label.match(/back/i) ) {
+      if (device.kind == 'videoinput' && device.label.match(/back/gi) ) {
         videoDevices.push(device);
       }
     });
-    devId = videoDevices.length;
+    // devId = videoDevices.length;
 
     // if (videoStream.getVideoTracks().length == 1) {
     //   devId = videoStream.getVideoTracks()[0].getCapabilities().deviceId;
@@ -48,30 +49,23 @@ export default function App() {
     //   });
     // }
 
-    // dev = videoStream.getTracks();
-    // let devi = await window.navigator.mediaDevices.enumerateDevices();
-    // let videoDevices: Array<MediaDeviceInfo> = [];
-    // await devi.forEach((device: MediaDeviceInfo) => {
-    //   if (device.kind == 'videoinput') {
-    //     videoDevices.push(device);
-    //   }
-    // });
+  
+    for (let i in videoDevices) {
+      const device = videoDevices[i];
+      // console.log( "Opening video device " + device.deviceId + " (" + device.label + ")" );
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
+      stream.getVideoTracks().forEach(track => {
+        const capabilities = track.getCapabilities();
+        devId += capabilities;
+        console.log(capabilities);
+        const settings = track.getSettings();
+        // console.log(settings);
+        console.log('');
+      }
+      )
 
-    // for (let i in videoDevices) {
-    //   const device = videoDevices[i];
-    //   // console.log( "Opening video device " + device.deviceId + " (" + device.label + ")" );
-    //   const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
-    //   stream.getVideoTracks().forEach(track => {
-    //     const capabilities = track.getCapabilities();
-    //     console.log(capabilities);
-    //     const settings = track.getSettings();
-    //     // console.log(settings);
-    //     console.log('');
-    //   }
-    //   )
-
-    //   stream.getTracks().forEach(track => track.stop());
-    // }
+      stream.getTracks().forEach(track => track.stop());
+    }
 
 
 
@@ -82,8 +76,7 @@ export default function App() {
           {
             fps: 10,
             aspectRatio
-            
-        },
+          },
           onNewScanResult,
           () => {
             return;
@@ -122,6 +115,7 @@ export default function App() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <ThemeContextProvider theme={{
       skin: getSkinByName(VIVO_NEW_SKIN),
