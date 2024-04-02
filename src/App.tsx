@@ -178,7 +178,7 @@ export default function App() {
       }
     });
 
-    // dev += videoDevices.length + " ";
+    dev += videoStream.getVideoTracks().length + " ";
 
     for (let i in videoDevices) {
       const device = videoDevices[i];
