@@ -1,5 +1,5 @@
 import React from 'react';
-import { Html5Qrcode, Html5QrcodeSupportedFormats } from 'html5-qrcode';
+import { Html5Qrcode, Html5QrcodeSupportedFormats, Html5QrcodeScanner } from 'html5-qrcode';
 import { Box, ButtonFixedFooterLayout, ButtonSecondary, Text4, ThemeContextProvider, VIVO_NEW_SKIN, getSkinByName, skinVars } from '@telefonica/mistica';
 import styles from './styles.module.css';
 
@@ -68,6 +68,9 @@ export default function App() {
 
 
     try {
+
+      
+
       html5QrCode
         .start(
           devId[3],
@@ -99,7 +102,7 @@ export default function App() {
   React.useEffect(() => {
     const html5QrCode = new Html5Qrcode('video-area', {
       useBarCodeDetectorIfSupported: true,
-      verbose: false,
+      verbose: true,
       formatsToSupport: [Html5QrcodeSupportedFormats.CODE_128],
     });
 
