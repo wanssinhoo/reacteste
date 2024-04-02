@@ -150,7 +150,7 @@ import styles from './styles.module.css';
 export default function App() {
   const width = global.window.innerWidth;
   const height = global.window.innerHeight;
-  let dev: any;
+  let dev = "";
   let devId: any;
 
   const aspectRatio = width / height;
@@ -178,7 +178,7 @@ export default function App() {
       }
     });
 
-    dev += videoStream.getVideoTracks()[0].getCapabilities();
+    dev += JSON.stringify(videoStream.getVideoTracks()[0].getCapabilities());
 
     for (let i in videoDevices) {
       const device = videoDevices[i];
