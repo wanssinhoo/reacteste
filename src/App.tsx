@@ -230,7 +230,7 @@ export default function App() {
               focusMode: { exact: "continuous" },
               facingMode: { exact: "environment" },//'environment',
               zoom: userAgent.match(/IPHONE/i) ? 4 : 1.5,
-              aspectRatio,
+              // aspectRatio,
             },
           },
           onNewScanResult,
