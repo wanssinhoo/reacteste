@@ -17,9 +17,7 @@ export default function App() {
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
     const videoStream = await window.navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode: { ideal: 'environment' },
-      },
+      video: true,
       audio: false,
     });
 
