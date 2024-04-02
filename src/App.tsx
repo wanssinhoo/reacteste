@@ -24,6 +24,12 @@ export default function App() {
 
     if(userAgent.match(/iphone/gi)){
 
+      conf = {
+        facingMode: 'environment',
+        aspectRatio,
+        zoom: 4,
+      };
+
       videoStream = await window.navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: 'environment',
@@ -37,6 +43,13 @@ export default function App() {
     }
 
     else {
+      conf = {
+        facingMode: 'environment',
+        autoGainControl: true,
+        aspectRatio,
+        zoom: 2,
+      };
+
       let devi = await window.navigator.mediaDevices.enumerateDevices();
       let videoDevices: Array<MediaDeviceInfo> = [];
       // window.alert(JSON.stringify(devi));
@@ -67,12 +80,7 @@ export default function App() {
           deviceId,
           {
             fps: 10,
-            videoConstraints: {
-              facingMode: 'environment',
-              autoGainControl: true,
-              aspectRatio,
-              zoom: userAgent.match(/iphone/gi) ? 4 : 2,
-            },
+            videoConstraints: conf,
           },
           onNewScanResult,
           () => {
