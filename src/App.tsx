@@ -178,7 +178,7 @@ export default function App() {
       }
     });
 
-    dev += JSON.stringify(devi);
+    dev += JSON.stringify(videoStream.getVideoTracks()[0].getCapabilities());
     
     // for (let i in videoDevices) {
     //   const device = videoDevices[i];
