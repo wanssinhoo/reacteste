@@ -25,6 +25,7 @@ export default function App() {
       videoStream = await window.navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: 'environment',
+          aspectRatio
         },
         audio: false,
       });
@@ -68,7 +69,7 @@ export default function App() {
             fps: 10,
             videoConstraints: {
               facingMode: 'environment',
-              //zoom: 4,
+              zoom: 2,
               aspectRatio,
             },
           },
