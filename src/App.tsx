@@ -7,7 +7,7 @@ export default function App() {
   const width = global.window.innerWidth;
   const height = global.window.innerHeight;
 
-  const aspectRatio = 1;
+  const aspectRatio = width / height;
 
   const onNewScanResult = (decodedText: string) => {
     window.alert(decodedText);
