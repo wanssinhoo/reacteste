@@ -81,7 +81,11 @@ export default function App() {
           videoDevices[1].deviceId,
           {
             fps: 10,
-            aspectRatio
+            videoConstraints: {
+              facingMode: 'environment',
+              //zoom: 4,
+              aspectRatio,
+            },
             
         },
           onNewScanResult,
