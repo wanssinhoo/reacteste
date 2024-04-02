@@ -67,11 +67,12 @@ export default function App() {
           deviceId,
           {
             fps: 10,
-            videoConstraints: {
-              facingMode: 'environment',
-              zoom: userAgent.match(/iphone/gi) ? 4 : 2,
-              aspectRatio,
-            },
+            aspectRatio,
+            // videoConstraints: {
+            //   facingMode: 'environment',
+            //   zoom: userAgent.match(/iphone/gi) ? 4 : 2,
+              
+            // },
           },
           onNewScanResult,
           () => {
