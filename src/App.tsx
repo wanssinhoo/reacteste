@@ -267,7 +267,7 @@ export default function App() {
         button={
           <ButtonSecondary
             onPress={() => {
-              { console.log(dev) }
+               console.log(dev) 
             }}
             style={{
               background:
@@ -287,15 +287,15 @@ export default function App() {
                 medium
                 color={skinVars.colors.textPrimaryInverse}
               >
-                {`${dev}`}
+                {`ola`}
               </Text4>
-              {/* <Text4
+              { <Text4
                 textAlign="center"
                 medium
                 color={skinVars.colors.textPrimaryInverse}
               >
                 {'e aguarde a leitura automática'}
-              </Text4> */}
+              </Text4> }
             </Box>
           </Box>
           <Box className={styles.scanning_area}>
