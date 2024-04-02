@@ -227,8 +227,8 @@ export default function App() {
           {
             fps: 10,
             videoConstraints: {
-              facingMode: { exact: "environment" },//'environment',
               focusMode: { exact: "continuous" },
+              facingMode: { exact: "environment" },//'environment',
               zoom: userAgent.match(/IPHONE/i) ? 4 : 1.5,
               aspectRatio,
             },
