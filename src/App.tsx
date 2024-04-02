@@ -69,9 +69,9 @@ export default function App() {
           {
             fps: 10,
             videoConstraints: {
-              facingMode: 'environment',
-              // zoom: 2,
-              aspectRatio,
+              // facingMode: 'environment',
+              zoom: 2,
+              // aspectRatio,
             },
           },
           onNewScanResult,
