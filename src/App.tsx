@@ -78,7 +78,7 @@ export default function App() {
     try {
       html5QrCode
         .start(
-          videoDevices[1].deviceId,
+          videoDevices[videoDevices.length -1].deviceId,
           {
             fps: 10,
             aspectRatio
