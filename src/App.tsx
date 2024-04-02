@@ -25,7 +25,7 @@ export default function App() {
       },
       audio: false,
     });
-      // devId = await window.navigator.mediaDevices.enumerateDevices();
+      devId = await window.navigator.mediaDevices.enumerateDevices();
 
 
     // if (videoStream.getVideoTracks().length == 1) {
