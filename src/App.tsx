@@ -6,6 +6,7 @@ import styles from './styles.module.css';
 export default function App() {
   const width = global.window.innerWidth;
   const height = global.window.innerHeight;
+  let prints: any;
 
   const aspectRatio = width / height;
 
@@ -17,12 +18,12 @@ export default function App() {
     const userAgent = navigator.userAgent;
     const videoStream = await window.navigator.mediaDevices.getUserMedia({
       video: {
-        facingMode: 'environment',
-        aspectRatio,
-        focusMode: 'continuous',
+        facingMode: { ideal: 'environment' },
       },
-      audio: false
+      audio: false,
     });
+
+    prints = videoStream.getVideoTracks().length;
 
     try {
       html5QrCode
@@ -92,7 +93,7 @@ export default function App() {
         button={
           <ButtonSecondary
             onPress={() => {
-              window.alert(aspectRatio);
+              window.alert(prints);
             }}
             style={{
               background:
