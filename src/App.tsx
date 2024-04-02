@@ -72,6 +72,7 @@ export default function App() {
             aspectRatio,
             videoConstraints: {
               facingMode: 'environment',
+              autoGainControl: true,
               zoom: userAgent.match(/iphone/gi) ? 4 : 2,
               
             },
