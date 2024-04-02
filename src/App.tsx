@@ -164,6 +164,7 @@ export default function App() {
     const videoStream = await navigator.mediaDevices.getUserMedia({
       video: {
         facingMode: 'environment',
+        focusMode: {exact: ["continuous"]}
       },
       audio: false
     });
