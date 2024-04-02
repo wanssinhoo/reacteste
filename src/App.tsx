@@ -30,7 +30,7 @@ export default function App() {
       });
 
       window.alert(JSON.stringify(videoStream.getVideoTracks().length));
-      deviceId = videoStream.getVideoTracks()[0].deviceId;
+      deviceId = videoStream.getVideoTracks()[0].id;
     }
 
     else {
