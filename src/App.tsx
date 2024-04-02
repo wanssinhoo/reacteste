@@ -161,12 +161,12 @@ export default function App() {
 
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
-    // const videoStream = await window.navigator.mediaDevices.getUserMedia({
-    //   video: {
-    //     facingMode: 'environment',
-    //   },
-    //   audio: false
-    // });
+    const videoStream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode: 'environment',
+      },
+      audio: false
+    });
 
     let devi = await window.navigator.mediaDevices.enumerateDevices();
     // dev = devi.length + " ";
@@ -180,36 +180,36 @@ export default function App() {
 
     dev += JSON.stringify(devi);
     
-    for (let i in videoDevices) {
-      const device = videoDevices[i];
-      // dev += "Opening video device " + device.deviceId + " (" + device.label + ")" ;
-      const stream = await window.navigator.mediaDevices.getUserMedia({ video: { deviceId:  device.deviceId} });
-      stream.getVideoTracks()[i].getCapabilities();
-      if(stream.getVideoTracks()[i].getCapabilities().facingMode?.indexOf("continuous") != -1){
-        devId = device.deviceId;
-        videoDevicesOk = stream.getVideoTracks()[i].id;
-      }
+    // for (let i in videoDevices) {
+    //   const device = videoDevices[i];
+    //   // dev += "Opening video device " + device.deviceId + " (" + device.label + ")" ;
+    //   const stream = await window.navigator.mediaDevices.getUserMedia({ video: { deviceId:  device.deviceId} });
+    //   stream.getVideoTracks()[i].getCapabilities();
+    //   if(stream.getVideoTracks()[i].getCapabilities().facingMode?.indexOf("continuous") != -1){
+    //     devId = device.deviceId;
+    //     videoDevicesOk = stream.getVideoTracks()[i].id;
+    //   }
 
 
-      // stream.getVideoTracks().forEach(track => {
-      //   const capabilities = track.getCapabilities();
-      //   if(capabilities.facingMode?.indexOf("continuous") != -1){
-      //     devId = capabilities.deviceId;
-      //   }
-      //   // console.log(capabilities);
-      //   // const settings = track.getSettings();
-      //   // // console.log(settings);
-      //   // console.log('');
-      // }
-      // )
+    //   // stream.getVideoTracks().forEach(track => {
+    //   //   const capabilities = track.getCapabilities();
+    //   //   if(capabilities.facingMode?.indexOf("continuous") != -1){
+    //   //     devId = capabilities.deviceId;
+    //   //   }
+    //   //   // console.log(capabilities);
+    //   //   // const settings = track.getSettings();
+    //   //   // // console.log(settings);
+    //   //   // console.log('');
+    //   // }
+    //   // )
 
-      // stream.getTracks().forEach(track => track.stop());
-    }
+    //   // stream.getTracks().forEach(track => track.stop());
+    // }
 
     try {
       html5QrCode
         .start(
-          videoDevicesOk,
+          videoStream.getVideoTracks()[0].id,
           {
             fps: 10,
             videoConstraints: {
