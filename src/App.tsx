@@ -166,13 +166,20 @@ export default function App() {
         facingMode: 'environment',
       },
       audio: false
-    });
+    })
+    // .then((stream) => {
+    //   video.srcObject = stream;
+    //   let track = stream.getVideoTracks()[0];
+    //   track.applyConstraints({
+    //     advanced: [
+    //       { focusMode: 'manual', focusDistance: 0.33 }
+    //     ]
+    //   })
+    // });
 
-    videoStream.getVideoTracks()[0].applyConstraints({
-      facingMode: { exact: "continuous" }
-    });
+    
 
-    // let devi = await window.navigator.mediaDevices.enumerateDevices();
+    let devi = await window.navigator.mediaDevices.enumerateDevices();
     // let devis = await window.navigator.mediaDevices;
     
     // devis.applyConstraints({});
@@ -216,12 +223,12 @@ export default function App() {
     try {
       html5QrCode
         .start(
-          videoStream.getVideoTracks()[0],
+          devi,
           {
             fps: 10,
             videoConstraints: {
               facingMode: 'environment',
-              focusMode: {exact: "continuous"},
+              focusMode: "continuous",
               zoom: userAgent.match(/IPHONE/i) ? 4 : 1.5,
               aspectRatio,
             },
