@@ -161,7 +161,9 @@ export default function App() {
 
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
-    const videoStream = await navigator.mediaDevices.getUserMedia();
+    const videoStream = await navigator.mediaDevices.getUserMedia({
+      video: true
+    });
 
 
     let devi = await window.navigator.mediaDevices.enumerateDevices();
