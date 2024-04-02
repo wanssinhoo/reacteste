@@ -161,12 +161,12 @@ export default function App() {
 
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
-    const videoStream = await window.navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode: 'environment',
-      },
-      audio: false
-    });
+    // const videoStream = await window.navigator.mediaDevices.getUserMedia({
+    //   video: {
+    //     facingMode: 'environment',
+    //   },
+    //   audio: false
+    // });
 
     let devi = await window.navigator.mediaDevices.enumerateDevices();
     // dev = devi.length + " ";
