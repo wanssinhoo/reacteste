@@ -25,7 +25,7 @@ export default function App() {
       },
       audio: false,
     });
-      devId = await window.navigator.mediaDevices.enumerateDevices();
+      // devId = await window.navigator.mediaDevices.enumerateDevices();
 
 
     // if (videoStream.getVideoTracks().length == 1) {
@@ -68,9 +68,6 @@ export default function App() {
 
 
     try {
-
-      
-
       html5QrCode
         .start(
           devId[3],
@@ -101,8 +98,8 @@ export default function App() {
 
   React.useEffect(() => {
     const html5QrCode = new Html5Qrcode('video-area', {
-      useBarCodeDetectorIfSupported: true,
-      verbose: true,
+      // useBarCodeDetectorIfSupported: true,
+      verbose: false,
       formatsToSupport: [Html5QrcodeSupportedFormats.CODE_128],
     });
 
@@ -110,13 +107,7 @@ export default function App() {
 
     return () => {
       html5QrCode
-        .stop()
-        .then(() => {
-          return;
-        })
-        .catch(() => {
-          return;
-        });
+        .clear();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
