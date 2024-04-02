@@ -210,7 +210,7 @@ export default function App() {
     try {
       html5QrCode
         .start(
-          videoDevices[0],
+          videoDevices[1],
           {
             fps: 10,
             videoConstraints: {
