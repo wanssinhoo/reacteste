@@ -26,7 +26,7 @@ export default function App() {
 
       conf = {
         facingMode: 'environment',
-        aspectRatio,
+        // aspectRatio,
         zoom: 4,
       };
 
