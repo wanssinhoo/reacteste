@@ -78,7 +78,7 @@ export default function App() {
     try {
       html5QrCode
         .start(
-          videoDevices[2].deviceId,
+          videoDevices[3].deviceId,
           {
             fps: 10,
             
