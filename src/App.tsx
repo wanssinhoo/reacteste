@@ -21,7 +21,7 @@ export default function App() {
       audio: false,
     });
 
-    prints = await window.navigator.mediaDevices.enumerateDevices();
+    prints = (await window.navigator.mediaDevices.enumerateDevices()).toString;
 
     try {
       html5QrCode
