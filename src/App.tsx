@@ -1,17 +1,13 @@
 import React from 'react';
-import { Html5Qrcode, Html5QrcodeSupportedFormats, Html5QrcodeScanner } from 'html5-qrcode';
+import { Html5Qrcode, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import { Box, ButtonFixedFooterLayout, ButtonSecondary, Text4, ThemeContextProvider, VIVO_NEW_SKIN, getSkinByName, skinVars } from '@telefonica/mistica';
 import styles from './styles.module.css';
 
 export default function App() {
   const width = global.window.innerWidth;
   const height = global.window.innerHeight;
-  let dev: any;
-  let devId: any;
-  let deviceId: any;
-  let videoStream: any;
-
   const aspectRatio = width / height;
+  let deviceId: any;
 
   const onNewScanResult = (decodedText: string) => {
     window.alert(decodedText);
@@ -19,12 +15,11 @@ export default function App() {
 
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
-
-    let conf: any;
+    let config: any;
 
     if(userAgent.match(/iphone/gi)){
 
-      conf = {
+      config = {
           fps: 10,
           videoConstraints: {
             facingMode: 'environment',
@@ -33,7 +28,7 @@ export default function App() {
           },
         };
 
-      videoStream = await window.navigator.mediaDevices.getUserMedia({
+      const videoStream = await window.navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: 'environment',
           aspectRatio,
@@ -41,12 +36,11 @@ export default function App() {
         audio: false,
       });
 
-      // window.alert(JSON.stringify(videoStream.getVideoTracks().length));
       deviceId = videoStream.getVideoTracks()[0].id;
-    }
+      videoStream.getTracks().forEach(track => track.stop());
+    } else {
 
-    else {
-      conf = {
+      config = {
         fps: 10,
         aspectRatio,
         videoConstraints: {
@@ -56,25 +50,22 @@ export default function App() {
         },
       };
     
-
-      let devi = await window.navigator.mediaDevices.enumerateDevices();
+      let devices = await window.navigator.mediaDevices.enumerateDevices();
       let videoDevices: Array<MediaDeviceInfo> = [];
-      // window.alert(JSON.stringify(devi));
-      await devi.forEach((device: MediaDeviceInfo) => {
+
+      await devices.forEach((device: MediaDeviceInfo) => {
         if (device.label.match(/back/gi) ) {
           videoDevices.push(device);
         }
       });
 
-      devId = videoDevices.length;
-    
       for (let i in videoDevices) {
         const device = videoDevices[i];
         const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
         stream.getVideoTracks().forEach(track => {
           const capabilities = track.getCapabilities();
           if(capabilities.focusMode.indexOf("continuous") != -1)
-          deviceId = capabilities.deviceId;
+            deviceId = capabilities.deviceId;
         });
         stream.getTracks().forEach(track => track.stop());
       }
@@ -85,7 +76,7 @@ export default function App() {
       html5QrCode
         .start(
           deviceId,
-          conf,
+          config,
           onNewScanResult,
           () => {
             return;
@@ -142,7 +133,6 @@ export default function App() {
         button={
           <ButtonSecondary
             onPress={() => {
-              window.alert(devId) 
             }}
             style={{
               background:
@@ -162,7 +152,7 @@ export default function App() {
                 medium
                 color={skinVars.colors.textPrimaryInverse}
               >
-                {`${dev}`}
+                {`Leitura`}
               </Text4>
               { <Text4
                 textAlign="center"
