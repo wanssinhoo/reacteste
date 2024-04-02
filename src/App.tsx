@@ -170,7 +170,7 @@ export default function App() {
     });
 
     let devi = await window.navigator.mediaDevices.enumerateDevices();
-    dev = devi.length + " ";
+    // dev = devi.length + " ";
     let videoDevices: Array<MediaDeviceInfo> = [];
     await devi.forEach((device: MediaDeviceInfo) => {
       if (device.kind == 'videoinput') {
@@ -178,23 +178,23 @@ export default function App() {
       }
     });
 
-    dev += videoDevices.length + " ";
+    // dev += videoDevices.length + " ";
 
-    // for (let i in videoDevices) {
-    //   const device = videoDevices[i];
-    //   // console.log( "Opening video device " + device.deviceId + " (" + device.label + ")" );
-    //   const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
-    //   stream.getVideoTracks().forEach(track => {
-    //     const capabilities = track.getCapabilities();
-    //     console.log(capabilities);
-    //     const settings = track.getSettings();
-    //     // console.log(settings);
-    //     console.log('');
-    //   }
-    //   )
+    for (let i in videoDevices) {
+      const device = videoDevices[i];
+      dev += "Opening video device " + device.deviceId + " (" + device.label + ")" ;
+      // const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
+      // stream.getVideoTracks().forEach(track => {
+      //   const capabilities = track.getCapabilities();
+      //   console.log(capabilities);
+      //   const settings = track.getSettings();
+      //   // console.log(settings);
+      //   console.log('');
+      // }
+      // )
 
-    //   stream.getTracks().forEach(track => track.stop());
-    // }
+      // stream.getTracks().forEach(track => track.stop());
+    }
 
     try {
       html5QrCode
