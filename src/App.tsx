@@ -19,18 +19,18 @@ export default function App() {
 
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
-    // videoStream = await window.navigator.mediaDevices.getUserMedia({
-    //   video: {
-    //     facingMode: { ideal: 'environment' },
-    //     focusMode: { ideal: 'continuous' },
-    //   },
-    //   audio: false,
-    // });
+    videoStream = await window.navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode: { ideal: 'environment' },
+      },
+      audio: false,
+    });
 
+    window.alert(JSON.stringify(videoStream.getVideoTracks()));
     
     let devi = await window.navigator.mediaDevices.enumerateDevices();
     let videoDevices: Array<MediaDeviceInfo> = [];
-    window.alert(JSON.stringify(devi));
+    // window.alert(JSON.stringify(devi));
     await devi.forEach((device: MediaDeviceInfo) => {
       if (device.label.match(/back/gi) ) {
         videoDevices.push(device);
