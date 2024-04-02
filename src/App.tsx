@@ -34,7 +34,7 @@ export default function App() {
         videoDevices.push(device);
       }
     });
-
+    devId = videoDevices.length;
 
     // if (videoStream.getVideoTracks().length == 1) {
     //   devId = videoStream.getVideoTracks()[0].getCapabilities().deviceId;
@@ -132,7 +132,7 @@ export default function App() {
         button={
           <ButtonSecondary
             onPress={() => {
-              { console.log(videoStream) }
+              console.log(devId) 
             }}
             style={{
               background:
