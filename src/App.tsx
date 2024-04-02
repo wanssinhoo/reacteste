@@ -81,11 +81,7 @@ export default function App() {
           videoDevices[1].deviceId,
           {
             fps: 10,
-            videoConstraints: {
-                facingMode: 'environment',
-                zoom: userAgent.match(/IPHONE/i) ? 4 : 2,
-                aspectRatio,
-            },
+            
         },
           onNewScanResult,
           () => {
