@@ -267,7 +267,7 @@ export default function App() {
         button={
           <ButtonSecondary
             onPress={() => {
-               console.log(dev) 
+              window.alert(dev);
             }}
             style={{
               background:
