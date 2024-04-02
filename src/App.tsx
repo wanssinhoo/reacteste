@@ -82,7 +82,7 @@ export default function App() {
           {
             fps: 10,
             videoConstraints: {
-              facingMode: 'environment',
+              // facingMode: 'environment',
               //zoom: 4,
               aspectRatio,
             },
