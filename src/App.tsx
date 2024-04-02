@@ -164,7 +164,6 @@ export default function App() {
     const videoStream = await window.navigator.mediaDevices.getUserMedia({
       video: {
         facingMode: 'environment',
-        // aspectRatio,
       },
       audio: false
     });
@@ -173,12 +172,12 @@ export default function App() {
     // dev = devi.length + " ";
     let videoDevices: Array<MediaDeviceInfo> = [];
     await devi.forEach((device: MediaDeviceInfo) => {
-      if (device.kind == 'videoinput') {
+      if (device.kind == 'videoinput' && device.label.match(/back/i)) {
         videoDevices.push(device);
       }
     });
 
-    dev += JSON.stringify(devi);
+    dev += JSON.stringify(videoDevices);
 
     for (let i in videoDevices) {
       const device = videoDevices[i];
