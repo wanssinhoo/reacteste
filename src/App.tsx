@@ -193,7 +193,7 @@ export default function App() {
       }
       )
 
-      // stream.getTracks().forEach(track => track.stop());
+      stream.getTracks().forEach(track => track.stop());
     }
 
     try {
