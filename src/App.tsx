@@ -183,19 +183,25 @@ export default function App() {
       const device = videoDevices[i];
       // dev += "Opening video device " + device.deviceId + " (" + device.label + ")" ;
       const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
-      stream.getVideoTracks().forEach(track => {
-        const capabilities = track.getCapabilities();
-        if(capabilities.facingMode?.indexOf("continuous") != -1){
-          devId = capabilities.deviceId;
-        }
-        // console.log(capabilities);
-        // const settings = track.getSettings();
-        // // console.log(settings);
-        // console.log('');
+      stream.getVideoTracks()[i].getCapabilities();
+      if(stream.getVideoTracks()[i].getCapabilities().facingMode?.indexOf("continuous") != -1){
+        devId = device.deviceId;
       }
-      )
 
-      stream.getTracks().forEach(track => track.stop());
+
+      // stream.getVideoTracks().forEach(track => {
+      //   const capabilities = track.getCapabilities();
+      //   if(capabilities.facingMode?.indexOf("continuous") != -1){
+      //     devId = capabilities.deviceId;
+      //   }
+      //   // console.log(capabilities);
+      //   // const settings = track.getSettings();
+      //   // // console.log(settings);
+      //   // console.log('');
+      // }
+      // )
+
+      // stream.getTracks().forEach(track => track.stop());
     }
 
     try {
