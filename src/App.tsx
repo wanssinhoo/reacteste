@@ -20,6 +20,8 @@ export default function App() {
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
 
+    let conf: any;
+
     if(userAgent.match(/iphone/gi)){
 
       videoStream = await window.navigator.mediaDevices.getUserMedia({
@@ -68,11 +70,11 @@ export default function App() {
           {
             fps: 10,
             aspectRatio,
-            // videoConstraints: {
-            //   facingMode: 'environment',
-            //   zoom: userAgent.match(/iphone/gi) ? 4 : 2,
+            videoConstraints: {
+              facingMode: 'environment',
+              zoom: userAgent.match(/iphone/gi) ? 4 : 2,
               
-            // },
+            },
           },
           onNewScanResult,
           () => {
