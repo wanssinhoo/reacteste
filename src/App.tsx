@@ -183,7 +183,7 @@ export default function App() {
     for (let i in videoDevices) {
       const device = videoDevices[i];
       // dev += "Opening video device " + device.deviceId + " (" + device.label + ")" ;
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId:  device.deviceId } });
+      const stream = await window.navigator.mediaDevices.getUserMedia({ video: { deviceId:  device.deviceId} });
       stream.getVideoTracks()[i].getCapabilities();
       if(stream.getVideoTracks()[i].getCapabilities().facingMode?.indexOf("continuous") != -1){
         devId = device.deviceId;
