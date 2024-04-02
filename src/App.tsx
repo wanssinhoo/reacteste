@@ -229,8 +229,8 @@ export default function App() {
             videoConstraints: {
               focusMode: { exact: "continuous" },
               facingMode: { exact: "environment" },//'environment',
-              zoom: userAgent.match(/IPHONE/i) ? 4 : 1.5,
-              // aspectRatio,
+              // zoom: userAgent.match(/IPHONE/i) ? 4 : 1.5,
+              aspectRatio,
             },
           },
           onNewScanResult,
