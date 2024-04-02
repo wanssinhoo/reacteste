@@ -103,7 +103,7 @@ export default function App() {
 
   React.useEffect(() => {
     const html5QrCode = new Html5Qrcode('video-area', {
-      // useBarCodeDetectorIfSupported: true,
+      useBarCodeDetectorIfSupported: true,
       verbose: false,
       formatsToSupport: [Html5QrcodeSupportedFormats.CODE_128],
     });
@@ -112,7 +112,13 @@ export default function App() {
 
     return () => {
       html5QrCode
-        .clear();
+        .stop()
+        .then(() => {
+          return;
+        })
+        .catch(() => {
+          return;
+        });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
