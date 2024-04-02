@@ -24,7 +24,7 @@ export default function App() {
 
       videoStream = await window.navigator.mediaDevices.getUserMedia({
         video: {
-          facingMode: { ideal: 'environment' },
+          facingMode: 'environment',
         },
         audio: false,
       });
