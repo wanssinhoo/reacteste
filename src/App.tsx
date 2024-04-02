@@ -69,9 +69,9 @@ export default function App() {
             fps: 10,
             videoConstraints: {
               facingMode: 'environment',
-              // autoGainControl: true,
-              zoom: userAgent.match(/iphone/gi) ? 4 : 2,
+              autoGainControl: true,
               aspectRatio,
+              zoom: userAgent.match(/iphone/gi) ? 4 : 2,
             },
           },
           onNewScanResult,
