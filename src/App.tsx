@@ -68,6 +68,7 @@ export default function App() {
           deviceId,
           {
             fps: 10,
+            aspectRatio,
             videoConstraints: {
               // facingMode: 'environment',
               zoom: 2,
