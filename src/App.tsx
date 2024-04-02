@@ -50,14 +50,12 @@ export default function App() {
     
       for (let i in videoDevices) {
         const device = videoDevices[i];
-        // console.log( "Opening video device " + device.deviceId + " (" + device.label + ")" );
         const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
         stream.getVideoTracks().forEach(track => {
           const capabilities = track.getCapabilities();
           if(capabilities.focusMode.indexOf("continuous") != -1)
           deviceId = capabilities.deviceId;
-        }
-        );
+        });
         stream.getTracks().forEach(track => track.stop());
       }
     }
@@ -72,7 +70,7 @@ export default function App() {
             aspectRatio,
             videoConstraints: {
               facingMode: 'environment',
-              autoGainControl: true,
+              // autoGainControl: true,
               zoom: userAgent.match(/iphone/gi) ? 4 : 2,
             },
           },
