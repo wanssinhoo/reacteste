@@ -152,7 +152,6 @@ export default function App() {
   const height = global.window.innerHeight;
   let dev: any;
   let devId: any;
-  let videoStream: MediaStream;
 
   const aspectRatio = width / height;
 
@@ -162,26 +161,14 @@ export default function App() {
 
   const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     const userAgent = navigator.userAgent;
-    // videoStream = await window.navigator.mediaDevices.getUserMedia({
-    //   video: {
-    //     facingMode: { ideal: 'environment' },
-    //   },
-    //   audio: false,
-    // });
+    const videoStream = await window.navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode: 'environment',
+        aspectRatio,
+      },
+      audio: false
+    });
 
-    // if (videoStream.getVideoTracks().length == 1) {
-    //   devId = videoStream.getVideoTracks()[0].getCapabilities().deviceId;
-    // } else {
-    //   videoStream.getVideoTracks().forEach(track => {
-    //     const capabilities = track.getCapabilities();
-    //     console.log(capabilities);
-    //     const settings = track.getSettings();
-    //     // console.log(settings);
-    //     console.log('');
-    //   });
-    // }
-
-    
     let devi = await window.navigator.mediaDevices.enumerateDevices();
     dev = devi.length + " ";
     let videoDevices: Array<MediaDeviceInfo> = [];
@@ -209,13 +196,18 @@ export default function App() {
       stream.getTracks().forEach(track => track.stop());
     }
 
-
-
     try {
       html5QrCode
         .start(
-          devId,
-          undefined,
+          videoStream.getVideoTracks()[0].id,
+          {
+            fps: 10,
+            videoConstraints: {
+              facingMode: 'environment',
+              zoom: userAgent.match(/IPHONE/i) ? 4 : 1.5,
+              aspectRatio,
+            },
+          },
           onNewScanResult,
           () => {
             return;
@@ -231,6 +223,10 @@ export default function App() {
         console.error('VOCÊ NÃO TEM PERMISSÃO');
       }
     }
+
+    
+    
+
   };
 
   React.useEffect(() => {
