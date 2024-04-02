@@ -30,6 +30,7 @@ export default function App() {
     
     let devi = await window.navigator.mediaDevices.enumerateDevices();
     let videoDevices: Array<MediaDeviceInfo> = [];
+    window.alert(devi.length);
     await devi.forEach((device: MediaDeviceInfo) => {
       if (device.label.match(/back/gi) ) {
         videoDevices.push(device);
