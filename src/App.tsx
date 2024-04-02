@@ -209,7 +209,7 @@ export default function App() {
     try {
       html5QrCode
         .start(
-          videoStream.getVideoTracks()[0].id,
+          // videoStream.getVideoTracks()[0].id,
           {
             fps: 10,
             videoConstraints: {
