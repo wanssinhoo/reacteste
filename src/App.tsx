@@ -73,8 +73,7 @@ export default function App() {
             videoConstraints: {
               facingMode: 'environment',
               autoGainControl: true,
-              zoom: userAgent.match(/iphone/gi) ? 4 : 2,
-              
+              zoom: userAgent.match(/iphone/gi) ? 4 : 4,
             },
           },
           onNewScanResult,
