@@ -132,7 +132,7 @@ export default function App() {
         button={
           <ButtonSecondary
             onPress={() => {
-              console.log(devId) 
+              window.alert(devId) 
             }}
             style={{
               background:
