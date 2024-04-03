@@ -66,7 +66,7 @@ const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
         const videoStream = await window.navigator.mediaDevices.getUserMedia({
             video: {
                 facingMode: 'environment',
-                // aspectRatio,
+                aspectRatio,
             },
             audio: false,
         });
