@@ -71,7 +71,7 @@ export default function App() {
         deviceId = videoStream.getVideoTracks()[0].id;
         videoStream.getTracks().forEach(track => track.stop());
   
-        // window.alert(JSON.stringify( videoStream.getVideoTracks().length));
+        window.alert(JSON.stringify( videoStream.getVideoTracks().length));
       // } else {
 
         // for (let i in videoDevices) {
