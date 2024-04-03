@@ -46,6 +46,8 @@ export default function App() {
               },
     };
 
+    window.alert(JSON.stringify( config));
+
     try {
         const videoStream =
             await window.navigator.mediaDevices.getUserMedia({
