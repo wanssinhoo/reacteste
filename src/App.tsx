@@ -93,7 +93,7 @@ const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
               facingMode: 'environment',
               aspectRatio,
               focusMode: "continuous",
-              autoGainControl: false,
+              autoGainControl: true,
               zoom: 2,
             } 
         };
