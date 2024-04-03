@@ -26,6 +26,8 @@ export default function App() {
       }
     });
 
+    window.alert(devices.length);
+
     if(videoDevices.length == 0){
       const videoStream = await window.navigator.mediaDevices.getUserMedia({
         video: {
