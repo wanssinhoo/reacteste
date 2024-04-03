@@ -90,9 +90,8 @@ const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
         config = {
             ...config,
             videoConstraints: {
-              aspectRatio,
               facingMode: 'environment',
-              focusMode: "continuous",
+              aspectRatio,
               zoom: 2,
             } 
         };
