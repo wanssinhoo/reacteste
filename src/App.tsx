@@ -58,7 +58,7 @@ export default function App() {
         audio: false,
       });
 
-      window.alert(JSON.stringify( videoStream.getTracks()));
+      window.alert(JSON.stringify( videoStream.getVideoTracks()));
     
       let devices = await window.navigator.mediaDevices.enumerateDevices();
       let videoDevices: Array<MediaDeviceInfo> = [];
