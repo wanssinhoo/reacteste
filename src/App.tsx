@@ -59,7 +59,7 @@ export default function App() {
         }
       });
 
-      window.alert(videoDevices.length);
+      window.alert(devices.length);
 
       for (let i in videoDevices) {
         const device = videoDevices[i];
