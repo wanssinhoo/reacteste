@@ -50,15 +50,7 @@ export default function App() {
         },
       };
 
-      const videoStream = await window.navigator.mediaDevices.getUserMedia({
-        video: {
-          facingMode: 'environment',
-          aspectRatio,
-        },
-        audio: false,
-      });
-
-      window.alert(JSON.stringify( videoStream.getVideoTracks().length));
+      
     
       let devices = await window.navigator.mediaDevices.enumerateDevices();
       let videoDevices: Array<MediaDeviceInfo> = [];
@@ -69,18 +61,33 @@ export default function App() {
         }
       });
 
-      
-
-      for (let i in videoDevices) {
-        const device = videoDevices[i];
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
-        stream.getVideoTracks().forEach(track => {
-          const capabilities = track.getCapabilities();
-          if(capabilities.focusMode.indexOf("continuous") != -1)
-            deviceId = capabilities.deviceId;
+      if(videoDevices.length == 0){
+        const videoStream = await window.navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: 'environment',
+            aspectRatio,
+          },
+          audio: false,
         });
-        stream.getTracks().forEach(track => track.stop());
+
+        deviceId = videoStream.getVideoTracks()[0].id;
+        videoStream.getTracks().forEach(track => track.stop());
+  
+        // window.alert(JSON.stringify( videoStream.getVideoTracks().length));
+      } else {
+
+        for (let i in videoDevices) {
+          const device = videoDevices[i];
+          const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
+          stream.getVideoTracks().forEach(track => {
+            const capabilities = track.getCapabilities();
+            if(capabilities.focusMode.indexOf("continuous") != -1)
+              deviceId = capabilities.deviceId;
+          });
+          stream.getTracks().forEach(track => track.stop());
+        }
       }
+
     }
 
 
