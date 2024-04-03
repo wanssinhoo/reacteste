@@ -89,11 +89,12 @@ const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
     else {
         config = {
             ...config,
+            disableFlip: true,
             videoConstraints: {
               facingMode: 'environment',
               aspectRatio,
               focusMode: "continuous",
-              autoGainControl: false,
+              // autoGainControl: false,
               zoom: 2,
             } 
         };
