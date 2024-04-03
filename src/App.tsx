@@ -33,7 +33,7 @@ export default function App() {
                   aspectRatio,
                   zoom: 4,
               }
-            : userAgent.match(/android/gi)
+            : userAgent.match(/iphone/gi)
             ? {
                   facingMode: 'environment',
                   focusMode: 'continuous',
