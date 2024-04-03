@@ -50,7 +50,7 @@ export default function App() {
                 audio: false,
             });
             window.alert(JSON.stringify( videoStream.getVideoTracks().length));
-        deviceId = videoStream.getVideoTracks()[0].getConstraints().deviceId?.toString();
+        deviceId = videoStream.getVideoTracks()[0].getCapabilities().deviceId;
         videoStream.getTracks().forEach((track) => track.stop());
         console.log('TRY', deviceId);
     } catch {
