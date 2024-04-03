@@ -50,14 +50,14 @@ export default function App() {
         },
       };
     
-      let devices = await window.navigator.mediaDevices.enumerateDevices();
-      let videoDevices: Array<MediaDeviceInfo> = [];
+      // let devices = await window.navigator.mediaDevices.enumerateDevices();
+      // let videoDevices: Array<MediaDeviceInfo> = [];
 
-      devices.forEach((device: MediaDeviceInfo) => {
-        if (device.label.match(/back/gi) ) {
-          videoDevices.push(device);
-        }
-      });
+      // devices.forEach((device: MediaDeviceInfo) => {
+      //   if (device.label.match(/back/gi) ) {
+      //     videoDevices.push(device);
+      //   }
+      // });
 
       // if(videoDevices.length == 0){
         const videoStream = await window.navigator.mediaDevices.getUserMedia({
