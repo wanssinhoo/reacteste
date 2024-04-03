@@ -46,10 +46,7 @@ export default function App() {
     try {
         const videoStream =
             await window.navigator.mediaDevices.getUserMedia({
-                video: {
-                    facingMode: 'environment',
-                    aspectRatio,
-                },
+                video: true,
                 audio: false,
             });
             window.alert(JSON.stringify( videoStream.getVideoTracks().length));
