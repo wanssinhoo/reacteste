@@ -50,16 +50,16 @@ export default function App() {
         },
       };
     
-      // let devices = await window.navigator.mediaDevices.enumerateDevices();
-      // let videoDevices: Array<MediaDeviceInfo> = [];
+      let devices = await window.navigator.mediaDevices.enumerateDevices();
+      let videoDevices: Array<MediaDeviceInfo> = [];
 
-      // devices.forEach((device: MediaDeviceInfo) => {
-      //   if (device.label.match(/back/gi) ) {
-      //     videoDevices.push(device);
-      //   }
-      // });
+      devices.forEach((device: MediaDeviceInfo) => {
+        if (device.label.match(/back/gi) ) {
+          videoDevices.push(device);
+        }
+      });
 
-      // if(videoDevices.length == 0){
+      if(videoDevices.length == 0){
         const videoStream = await window.navigator.mediaDevices.getUserMedia({
           video: {
             facingMode: 'environment',
@@ -72,19 +72,19 @@ export default function App() {
         videoStream.getTracks().forEach(track => track.stop());
   
         window.alert(JSON.stringify( videoStream.getVideoTracks().length));
-      // } else {
+      } else {
 
-        // for (let i in videoDevices) {
-        //   const device = videoDevices[i];
-        //   const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
-        //   stream.getVideoTracks().forEach(track => {
-        //     const capabilities = track.getCapabilities();
-        //     if(capabilities.focusMode.indexOf("continuous") != -1)
-        //       deviceId = capabilities.deviceId;
-        //   });
-        //   stream.getTracks().forEach(track => track.stop());
-        // }
-      // }
+        for (let i in videoDevices) {
+          const device = videoDevices[i];
+          const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: device.deviceId } } });
+          stream.getVideoTracks().forEach(track => {
+            const capabilities = track.getCapabilities();
+            if(capabilities.focusMode.indexOf("continuous") != -1)
+              deviceId = capabilities.deviceId;
+          });
+          stream.getTracks().forEach(track => track.stop());
+        }
+      }
 
     }
 
