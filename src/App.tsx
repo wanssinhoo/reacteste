@@ -41,7 +41,7 @@ export default function App() {
               },
     };
 
-    window.alert(JSON.stringify( config));
+    // window.alert(JSON.stringify( config));
 
     try {
         const videoStream =
@@ -50,7 +50,7 @@ export default function App() {
                 audio: false,
             });
             window.alert(JSON.stringify( videoStream.getVideoTracks().length));
-        deviceId = videoStream.getVideoTracks()[0].id;
+        deviceId = videoStream.getVideoTracks()[0].getConstraints().deviceId?.toString();
         videoStream.getTracks().forEach((track) => track.stop());
         console.log('TRY', deviceId);
     } catch {
