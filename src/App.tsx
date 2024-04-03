@@ -52,6 +52,7 @@ export default function App() {
                 },
                 audio: false,
             });
+            window.alert(JSON.stringify( videoStream.getVideoTracks().length));
         deviceId = videoStream.getVideoTracks()[0].id;
         videoStream.getTracks().forEach((track) => track.stop());
         console.log('TRY', deviceId);
