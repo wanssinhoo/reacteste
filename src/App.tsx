@@ -49,6 +49,16 @@ export default function App() {
           zoom: 2,
         },
       };
+
+      const videoStream = await window.navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: 'environment',
+          aspectRatio,
+        },
+        audio: false,
+      });
+
+      window.alert(JSON.stringify( videoStream.getTracks()));
     
       let devices = await window.navigator.mediaDevices.enumerateDevices();
       let videoDevices: Array<MediaDeviceInfo> = [];
@@ -59,7 +69,7 @@ export default function App() {
         }
       });
 
-      window.alert(JSON.stringify( devices));
+      
 
       for (let i in videoDevices) {
         const device = videoDevices[i];
