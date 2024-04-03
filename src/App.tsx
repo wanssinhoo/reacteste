@@ -20,7 +20,7 @@ export default function App() {
             const videoStream = await window.navigator.mediaDevices.getUserMedia({
                 video: {
                     facingMode: 'environment',
-                    aspectRatio,
+                    // aspectRatio,
                 },
                 audio: false,
             });
@@ -66,7 +66,7 @@ const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
         const videoStream = await window.navigator.mediaDevices.getUserMedia({
             video: {
                 facingMode: 'environment',
-                aspectRatio,
+                // aspectRatio,
             },
             audio: false,
         });
@@ -90,15 +90,11 @@ const handleStartScanning = async (html5QrCode: Html5Qrcode) => {
         config = {
             ...config,
             aspectRatio,
-            videoConstraints: userAgent.match(/android/gi) ? {
-                focusMode: 'continuous',
-                facingMode: 'environment',
-                zoom: 2,
-            } : {
+            videoConstraints: {
                 facingMode: 'environment',
                 autoGainControl: true,
                 zoom: 2,
-            }
+            } 
         };
     }
 
